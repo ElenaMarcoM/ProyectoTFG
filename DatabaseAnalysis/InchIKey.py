@@ -1,4 +1,7 @@
 import requests
+import csv
+import os
+from pathlib import Path
 
 """
 Description: 
@@ -19,7 +22,35 @@ def get_inchi_from_inchikey(inchikey):
         return f"Error: Unable to fetch InChI for {inchikey}. Status code: {response.status_code}"
 
 
-# Ejemplo
-inchikey = "FOBGJHFRTCZWAF"
+# Example one compound:
+inchikey = "RKIMETXDACNTIE"
 inchi = get_inchi_from_inchikey(inchikey)
 print(f"InChI asociado: {inchi}")
+
+
+#Example sample from original file:
+
+# Obtaining file location from the one of this script
+# TODO: Revise why it doesn't detect file
+dir_base = Path(__file__).resolve().parent  # Obtain directory from this file
+os.chdir(dir_base)
+dir_file = dir_base.parent / 'externalSources' / 'all_classifiedMINI.tsv'
+print(dir_file, "\n¿Existe?", os.path.isfile(dir_file))
+
+# List of InChIKey and InChI
+inchikey_list = []
+inchi_list = []
+
+# Read file and take InChIKeys
+try:
+    with open(dir_file, mode='r', encoding='utf-8') as file:
+        tsv_reader = csv.reader(file, delimiter='\t')
+        for fila in tsv_reader:
+            if fila:  # Verifica que la fila no esté vacía
+                inchikey_list.append(fila[0])
+
+    print("InChIKeys: ", inchikey_list)
+except FileNotFoundError:
+    print(f"Error: No se encontró el archivo en la ruta especificada: {dir_file}")
+except Exception as e:
+    print(f"Se produjo un error inesperado: {e}")
