@@ -10,8 +10,10 @@ def funcion1(molecules,condition):
         print("The molecule", mol[0], "Has desired condition", condition)
     except sqlite3.Error as e:  # Si no encuentra un parámetro devuelve string vacio
         print("There has been an issue:", e)
+    except Exception as er:
+        print("There has been an error:", er)
     finally:
         print("---")
 
 
-funcion1("AQPHBYQUCKHJLT", "Organi compounds")
+# ("AQPHBYQUCKHJLT", "Organi compounds")
