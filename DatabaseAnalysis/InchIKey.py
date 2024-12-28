@@ -23,7 +23,7 @@ def get_inchi_from_inchikey(inchikey):
 
 
 # Example one compound:
-inchikey = "RKIMETXDACNTIE"
+inchikey = "FOBGJHFRTCZWAF"
 inchi = get_inchi_from_inchikey(inchikey)
 print(f"InChI asociado: {inchi}")
 
