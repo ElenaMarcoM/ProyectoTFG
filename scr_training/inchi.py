@@ -9,11 +9,12 @@ Parameters:
 Returns:
     string: InchI of a compound
 """
-def get_inchi_from_inchikey(inchikey):
-    url = f"https://cactus.nci.nih.gov/chemical/structure/{inchikey}/stdinchi"
+def get_inchikeyComplete(partial_inchikey):
+    url = f"https://cactus.nci.nih.gov/chemical/structure/{partial_inchikey}/stdinchikey"
     response = requests.get(url)
+    result = response.text.strip()
 
     if response.status_code == 200:
-        return response.text.strip()
+        return result.split("=", 1)[1]  # Elimina el prefijo "InChIKey="
     else:
-        return f"Error: Unable to fetch InChI for {inchikey}. Status code: {response.status_code}"
+        return f"Error: Unable to fetch full InChIKey for {partial_inchikey}. Status code: {response.status_code}"

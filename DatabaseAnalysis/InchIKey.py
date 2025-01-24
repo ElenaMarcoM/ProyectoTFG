@@ -12,7 +12,7 @@ Parameters:
 Returns:
     string: InchI of a compound
 """
-def get_inchi_from_inchikey(inchikey):
+def get_inchi(inchikey):
     url = f"https://cactus.nci.nih.gov/chemical/structure/{inchikey}/stdinchi"
     response = requests.get(url)
 
