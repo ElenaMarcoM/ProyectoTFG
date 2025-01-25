@@ -1,4 +1,4 @@
-from scr_training import inchi
+from scr_training import functions
 from pyclassyfire.client import get_entity
 import json
 
