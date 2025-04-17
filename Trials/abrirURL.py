@@ -58,7 +58,7 @@ def descargar_y_procesar_enlace(url):
         return None
 
 
-# URL del archivo en Google Drive
+# Instranciamos la URL
 url = "https://drive.google.com/uc?export=download&id=1QQRP559jyjFUQwQVJzZNrEQtlLnIfH8v"
 
 # Llamar a la función y procesar el archivo
