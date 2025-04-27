@@ -10,10 +10,10 @@ import pandas as pd
 # Download resources
 fingerprints = download_fingerprints("https://drive.google.com/uc?export=download&id=1QQRP559jyjFUQwQVJzZNrEQtlLnIfH8v")
 download_files("1W_7BjoAqTjsRd_BNuMbGyElljoKUqr0g")
-download_files("1ijcZO26GzndfIEoatdMPrRysPgvw96cq")
+download_files("1Tl0Vf2o8UsSBEVw8lGJbXi63NRYZr1r0")
 
 # File path
-compound_path = os.path.join("resources", "all_classifiedMINI.tsv")
+compound_path = os.path.join("resources", "all_classified.tsv")
 
 # Total number of columns
 max_col = 0
