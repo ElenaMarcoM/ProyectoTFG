@@ -13,7 +13,7 @@ def download_fingerprints(url):
 
     # Descargar el archivo
     gdown.download(url, compressed_path, fuzzy=True, quiet=False)
-    print(f"Descarga completada")
+    print(f"Descarga completada del pklz")
 
     # Step 1: Descomprimir correctamente el archivo .pklz
     with bz2.BZ2File(compressed_path, "rb") as f:
@@ -21,6 +21,7 @@ def download_fingerprints(url):
 
     # Step 2: Download decompressed pklz
     decompressed_path = os.path.join("resources", "fingerprints.pkl")
+    print(f"Descarga completada del pkl")
     with open(decompressed_path, "wb") as f:
         pickle.dump(data, f)
 
