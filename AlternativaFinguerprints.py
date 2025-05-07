@@ -1,6 +1,9 @@
 from rdkit import Chem
 from rdkit.Chem import AllChem
+from rdkit.DataStructs import ConvertToNumpyArray
 import pandas as pd
+import numpy as np
+from rdkit.DataStructs import ConvertToNumpyArray
 
 # ----- CÓDIGO GUILLERMO -----
 def inchi_to_morgan(inchi, radius=2, n_bits=2214):
@@ -26,3 +29,18 @@ for inchi in inchi_list:
     fp = inchi_to_morgan(inchi)
     if fp is not None:
         morgan_fps.append((inchi, fp))
+print(morgan_fps[1])
+# ----------------------------
+
+# ----- UPDATE PARA GENERAR ARCHIVO CON STRUCT ANTIGUA -----
+# TODO: Obtener los InChI de los compuestos 
+data = []
+for i, (inchi, fp) in enumerate(morgan_fps):
+    arr = np.zeros((1,), dtype=int)
+    ConvertToNumpyArray(fp, arr)
+    row = {"pid": i, "rt": round(np.random.uniform(90, 950), 1)}  # Simula tiempo de retención
+    row.update({f"V{j}": int(arr[j]) for j in range(len(arr))})
+    data.append(row)
+
+df = pd.DataFrame(data)
+print(df)
